@@ -1,0 +1,21 @@
+.App {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-areas: "header"
+                       "game"
+                       "footer";
+}
+
+.Header {
+  grid-area: "header";
+  margin-top: 5vh;
+  text-align: center;
+}
+
+.Footer {
+  grid-area: "footer";
+  margin-top: 5vh;
+  text-align: center;
+}
