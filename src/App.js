@@ -13,7 +13,7 @@ class App extends Component {
         <SimonGame />
 
         <div className="Footer">
-          <i className="fa fa-github fa-lg"></i> by <a href="https://github.com/alexgladd">Alex Gladd</a>
+          <i className="fa fa-github fa-lg"></i> by <a href="https://github.com/alexgladd/fcc-simon">Alex Gladd</a>
         </div>
       </div>
     );
