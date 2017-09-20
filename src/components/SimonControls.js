@@ -10,10 +10,18 @@ class SimonControls extends React.Component {
   }
 
   get countText() {
-    if (this.props.count > 0) {
+    if (this.props.playing) {
       return this.countFormatter.format(this.props.count);
     } else {
       return "--";
+    }
+  }
+
+  get buttonText() {
+    if (this.props.playing) {
+      return "Reset game";
+    } else {
+      return "Start game";
     }
   }
 
@@ -29,9 +37,9 @@ class SimonControls extends React.Component {
             onChange={this.props.onStrictChange} />
           <label htmlFor="strictmode">Strict mode</label>
         </div>
-        <div className="ResetControl">
-          <button className="ResetButton" onClick={this.props.onReset}>
-            Reset game
+        <div className="GameControl">
+          <button className="Button" onClick={this.props.onBtnClick}>
+            {this.buttonText}
           </button>
         </div>
       </div>
@@ -42,8 +50,9 @@ class SimonControls extends React.Component {
 SimonControls.propTypes = {
   count: PropTypes.number.isRequired,
   strict: PropTypes.bool.isRequired,
+  playing: PropTypes.bool.isRequired,
   onStrictChange: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired
+  onBtnClick: PropTypes.func.isRequired
 };
 
 export default SimonControls;
