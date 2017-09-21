@@ -34,8 +34,6 @@ class SimonGame extends React.Component {
   }
 
   simonButtonPress(buttonNumber) {
-    // TODO trigger button sound
-    console.log("Playing sound for button number " + buttonNumber);
     buttonTones[buttonNumber].play();
   }
 
