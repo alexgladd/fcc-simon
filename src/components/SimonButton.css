@@ -1,5 +1,5 @@
+/* Active buttons */
 .SimonButton {
-  text-align: center;
   background-clip: border-box;
   border-top: 6px solid rgba(255, 255, 255, 0.25);
   border-left: 6px solid rgba(255, 255, 255, 0.25);
@@ -40,5 +40,43 @@
   background-color: hsl(240, 70%, 50%);
 }
 .Blue:hover {
+  background-color: hsl(240, 85%, 60%);
+}
+
+/* Static buttons */
+.SimonButtonStatic {
+  background-clip: border-box;
+  border-top: 6px solid rgba(255, 255, 255, 0.25);
+  border-left: 6px solid rgba(255, 255, 255, 0.25);
+  border-right: 6px solid rgba(0, 0, 0, 0.25);
+  border-bottom: 6px solid rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+}
+
+.GreenStatic {
+  background-color: hsl(120, 60%, 50%);
+}
+.GreenStaticLight {
+  background-color: hsl(120, 75%, 50%);
+}
+
+.RedStatic {
+  background-color: hsl(0, 85%, 50%);
+}
+.RedStaticLight {
+  background-color: hsl(0, 100%, 60%);
+}
+
+.YellowStatic {
+  background-color: hsl(60, 70%, 50%);
+}
+.YellowStaticLight {
+  background-color: hsl(60, 85%, 50%);
+}
+
+.BlueStatic {
+  background-color: hsl(240, 70%, 50%);
+}
+.BlueStaticLight {
   background-color: hsl(240, 85%, 60%);
 }

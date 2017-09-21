@@ -10,29 +10,50 @@ class SimonButton extends React.Component {
   }
 
   handleClick() {
-    this.props.onClick(this.props.num);
+    if (this.props.onClick) {
+      this.props.onClick(this.props.num);
+    }
   }
 
   get buttonClasses() {
-    let clazz = "SimonButton ";
+    let clazz = "SimonButton";
+
+    if (!this.props.onClick) {
+      clazz += "Static ";
+    } else {
+      clazz += " ";
+    }
 
     switch (this.props.color) {
       case "green":
-        return clazz + "Green";
+        clazz += "Green";
+        break;
 
       case "red":
-        return clazz + "Red";
+        clazz += "Red";
+        break;
 
       case "yellow":
-        return clazz + "Yellow";
+        clazz += "Yellow";
+        break;
 
       case "blue":
-        return clazz + "Blue";
+        clazz += "Blue";
+        break;
 
       default:
         console.log("SimonButton has no recognized color: " + this.props.color);
-        return clazz;
     }
+
+    if (!this.props.onClick) {
+      clazz += "Static";
+
+      if (this.props.light) {
+        clazz += "Light";
+      }
+    }
+
+    return clazz;
   }
 
   render () {
@@ -45,7 +66,8 @@ class SimonButton extends React.Component {
 SimonButton.propTypes = {
   color: PropTypes.string.isRequired,
   num: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  light: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default SimonButton;
