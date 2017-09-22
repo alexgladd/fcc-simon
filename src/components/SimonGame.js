@@ -15,6 +15,8 @@ const buttonTones = [
   new Audio('/sfx/simonSound4.mp3'),
 ];
 
+const errorTone = new Audio('/sfx/negativebeep.mp3');
+
 class SimonGame extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,9 @@ class SimonGame extends React.Component {
       playing: false,
       strictMode: true,
       sequence: [],
-      active: players.computer
+      active: players.computer,
+      computerIdx: 0,
+      playerIdx: 0
     };
 
     this.handleStrictModeChange = this.handleStrictModeChange.bind(this);
@@ -46,8 +50,38 @@ class SimonGame extends React.Component {
 
   handleButtonClick(buttonNumber) {
     console.log("Button press on " + buttonNumber);
-    this.simonButtonPress(buttonNumber);
-    // TODO properly handle player button clicks
+
+    if (buttonNumber === this.state.sequence[this.state.playerIdx]) {
+      // correct press
+      this.simonButtonPress(buttonNumber);
+
+      const nextIdx = this.state.playerIdx + 1;
+
+      if (nextIdx >= this.state.sequence.length) {
+        // end of player's turn
+        console.log("End of player's active turn");
+
+        // switch to computer's turn after a pause
+        setTimeout(() => {
+          this.setState({
+            active: players.computer,
+            computerIdx: 0
+          });
+        }, 1000);
+      } else {
+        // wait for next press
+        this.setState({
+          playerIdx: nextIdx
+        });
+      }
+    } else {
+      // wrong press
+      errorTone.play();
+
+      if (this.state.strictMode) {
+        // TODO immediate game over
+      }
+    }
   }
 
   handleReset() {
@@ -101,7 +135,8 @@ class SimonGame extends React.Component {
             console.log("End of computer's active turn");
 
             this.setState({
-              active: players.human
+              active: players.human,
+              playerIdx: 0
             });
           } else {
             // move to next button in the sequence
