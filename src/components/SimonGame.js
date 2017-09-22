@@ -24,6 +24,7 @@ class SimonGame extends React.Component {
     this.state = {
       buttons: ["green", "red", "yellow", "blue"],
       playing: false,
+      gameState: "",
       strictMode: true,
       sequence: [],
       active: players.computer,
@@ -90,9 +91,11 @@ class SimonGame extends React.Component {
     // TODO
     this.setState({
       playing: false,
+      gameState: "",
       sequence: [],
       active: players.computer,
-      computerIdx: undefined
+      computerIdx: 0,
+      playerIdx: 0
     });
   }
 
@@ -111,6 +114,7 @@ class SimonGame extends React.Component {
     if (!prevState.playing && this.state.playing) {
       // start a new name
       this.setState({
+        gameState: "Playing sequence...",
         sequence: this.updatedSequence,
         computerIdx: 0
       });
@@ -119,6 +123,7 @@ class SimonGame extends React.Component {
       if (prevState.active === players.human) {
         // add a new item to the sequence
         this.setState({
+          gameState: "Playing sequence...",
           sequence: this.updatedSequence,
           computerIdx: 0
         });
@@ -135,6 +140,7 @@ class SimonGame extends React.Component {
             console.log("End of computer's active turn");
 
             this.setState({
+              gameState: "Your turn!",
               active: players.human,
               playerIdx: 0
             });
@@ -190,6 +196,7 @@ class SimonGame extends React.Component {
       <div className="SimonGame">
         <SimonControls count={this.state.sequence.length} strict={this.state.strictMode}
           playing={this.state.playing}
+          state={this.state.gameState}
           onStrictChange={this.handleStrictModeChange}
           onBtnClick={this.ctrlButtonClickHandler} />
 

@@ -32,6 +32,9 @@ class SimonControls extends React.Component {
         <div className="Count">
           {this.countText}
         </div>
+        <div className="SimonState">
+          <strong>{this.props.state}</strong>
+        </div>
         <div className="StrictControl">
           <input id="strictmode" type="checkbox" checked={this.props.strict}
             onChange={this.props.onStrictChange} />
@@ -51,6 +54,7 @@ SimonControls.propTypes = {
   count: PropTypes.number.isRequired,
   strict: PropTypes.bool.isRequired,
   playing: PropTypes.bool.isRequired,
+  state: PropTypes.string.isRequired,
   onStrictChange: PropTypes.func.isRequired,
   onBtnClick: PropTypes.func.isRequired
 };
