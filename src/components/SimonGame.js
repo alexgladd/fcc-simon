@@ -24,6 +24,7 @@ class SimonGame extends React.Component {
     this.state = {
       buttons: ["green", "red", "yellow", "blue"],
       playing: false,
+      gameEnded: false,
       gameState: "",
       strictMode: true,
       sequence: [],
@@ -56,31 +57,43 @@ class SimonGame extends React.Component {
       // correct press
       this.simonButtonPress(buttonNumber);
 
-      const nextIdx = this.state.playerIdx + 1;
-
-      if (nextIdx >= this.state.sequence.length) {
-        // end of player's turn
-        console.log("End of player's active turn");
-
-        // switch to computer's turn after a pause
-        setTimeout(() => {
-          this.setState({
-            active: players.computer,
-            computerIdx: 0
-          });
-        }, 1000);
-      } else {
-        // wait for next press
+      if ((this.state.playerIdx + 1) === 20) {
+        // player wins!
         this.setState({
-          playerIdx: nextIdx
+          gameEnded: true,
+          gameState: "You win!"
         });
+      } else {
+        const nextIdx = this.state.playerIdx + 1;
+
+        if (nextIdx >= this.state.sequence.length) {
+          // end of player's turn
+          console.log("End of player's active turn");
+
+          // switch to computer's turn after a pause
+          setTimeout(() => {
+            this.setState({
+              active: players.computer,
+              computerIdx: 0
+            });
+          }, 1000);
+        } else {
+          // wait for next press
+          this.setState({
+            playerIdx: nextIdx
+          });
+        }
       }
     } else {
       // wrong press
       errorTone.play();
 
       if (this.state.strictMode) {
-        // TODO immediate game over
+        // immediate game over
+        this.setState({
+          gameEnded: true,
+          gameState: "Game over :("
+        });
       }
     }
   }
@@ -88,9 +101,9 @@ class SimonGame extends React.Component {
   handleReset() {
     console.log("Reset");
 
-    // TODO
     this.setState({
       playing: false,
+      gameEnded: false,
       gameState: "",
       sequence: [],
       active: players.computer,
@@ -102,16 +115,16 @@ class SimonGame extends React.Component {
   handleStart() {
     console.log("Start");
 
-    // TODO
     this.setState({
       playing: true
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state);
-
-    if (!prevState.playing && this.state.playing) {
+    if (this.state.gameEnded) {
+      // do nothing
+      console.log("Game has ended");
+    } else if (!prevState.playing && this.state.playing) {
       // start a new name
       this.setState({
         gameState: "Playing sequence...",
@@ -175,7 +188,11 @@ class SimonGame extends React.Component {
   }
 
   get simonButtons() {
-    if (this.state.active === players.human) {
+    if (this.state.gameEnded) {
+      return this.state.buttons.map((val, idx) => {
+        return <SimonButton color={val} num={idx} key={idx.toString()} />;
+      });
+    } else if (this.state.active === players.human) {
       return this.state.buttons.map((val, idx) => {
         return <SimonButton color={val} num={idx}
           onPress={this.handleButtonClick} key={idx.toString()} />;
