@@ -109,7 +109,7 @@ class SimonGame extends React.Component {
               computerIdx: nextIdx
             });
           }
-        }, 1500);
+        }, 1000);
       }
     }
   }
@@ -137,7 +137,7 @@ class SimonGame extends React.Component {
     if (this.state.active === players.human) {
       return this.state.buttons.map((val, idx) => {
         return <SimonButton color={val} num={idx}
-          onClick={this.handleButtonClick} key={idx.toString()} />;
+          onPress={this.handleButtonClick} key={idx.toString()} />;
       });
     } else {
       return this.state.buttons.map((val, idx) => {
