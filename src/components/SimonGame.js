@@ -9,13 +9,13 @@ const players = {
 };
 
 const buttonTones = [
-  new Audio('/sfx/simonSound1.mp3'),
-  new Audio('/sfx/simonSound2.mp3'),
-  new Audio('/sfx/simonSound3.mp3'),
-  new Audio('/sfx/simonSound4.mp3'),
+  new Audio(process.env.PUBLIC_URL + '/sfx/simonSound1.mp3'),
+  new Audio(process.env.PUBLIC_URL + '/sfx/simonSound2.mp3'),
+  new Audio(process.env.PUBLIC_URL + '/sfx/simonSound3.mp3'),
+  new Audio(process.env.PUBLIC_URL + '/sfx/simonSound4.mp3'),
 ];
 
-const errorTone = new Audio('/sfx/negativebeep.mp3');
+const errorTone = new Audio(process.env.PUBLIC_URL + '/sfx/negativebeep.mp3');
 
 class SimonGame extends React.Component {
   constructor(props) {
