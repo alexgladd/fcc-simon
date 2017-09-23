@@ -42,7 +42,7 @@ class SimonControls extends React.Component {
         </div>
         <div className="GameControl">
           <button className="Button" onClick={this.props.onBtnClick}>
-            {this.buttonText}
+            <strong>{this.buttonText}</strong>
           </button>
         </div>
       </div>

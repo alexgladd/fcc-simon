@@ -2,11 +2,12 @@
   display: grid;
   grid-gap: 12px;
   grid-template-columns: 100vw;
-  grid-template-rows: 20vh calc(70vh - 24px) 10vh;
+  grid-template-rows: 15vh calc(70vh - 24px) 15vh;
   grid-template-areas: "header"
                        "game"
                        "footer";
   font-family: 'Righteous', cursive;
+  background-color: hsl(0, 0%, 75%);
 }
 
 .Header {
