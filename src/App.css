@@ -11,13 +11,13 @@
 }
 
 .Header {
-  grid-area: "header";
+  grid-area: header;
   margin-top: 2.5vh;
   text-align: center;
 }
 
 .Footer {
-  grid-area: "footer";
+  grid-area: footer;
   margin-top: 5vh;
   text-align: center;
 }

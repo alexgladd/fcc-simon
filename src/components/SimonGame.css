@@ -9,11 +9,18 @@
 }
 
 .ButtonGrid {
-  grid-area: "buttons";
+  grid-area: buttons;
   display: grid;
   grid-gap: 12px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   margin-left: 24px;
   margin-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .ButtonGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
 }

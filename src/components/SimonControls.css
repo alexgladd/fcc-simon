@@ -2,20 +2,41 @@
   grid-area: "controls";
   display: grid;
   grid-gap: 12px;
-  grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 0.5fr 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "count-lbl count strict control"
+                       "state     state state  state";
   margin: 12px 24px 12px 24px;
 }
 
+@media (min-width: 768px) {
+  .SimonControls {
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "count-lbl count state strict control";
+  }
+}
+
+.CountLabel {
+  grid-area: count-lbl;
+}
+
+.Count {
+  grid-area: count;
+}
+
 .StrictControl {
+  grid-area: strict;
   text-align: right;
 }
 
 .GameControl {
+  grid-area: control;
   text-align: right;
 }
 
 .SimonState {
+  grid-area: state;
   text-align: center;
   font-size: 1.2em;
 }
