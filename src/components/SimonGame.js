@@ -25,7 +25,7 @@ class SimonGame extends React.Component {
       buttons: ["green", "red", "yellow", "blue"],
       playing: false,
       gameEnded: false,
-      gameState: "",
+      gameState: "Ready",
       strictMode: true,
       sequence: [],
       active: players.computer,
@@ -104,7 +104,7 @@ class SimonGame extends React.Component {
     this.setState({
       playing: false,
       gameEnded: false,
-      gameState: "",
+      gameState: "Ready",
       sequence: [],
       active: players.computer,
       computerIdx: 0,
